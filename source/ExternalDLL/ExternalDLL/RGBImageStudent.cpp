@@ -5,28 +5,28 @@ RGBImageStudent::RGBImageStudent() : RGBImage() {
 	//TODO: Nothing
 }
 
-RGBImageStudent::RGBImageStudent(const RGBImageStudent &other) : RGBImage(other.getWidth(), other.getHeight()) {
+RGBImageStudent::RGBImageStudent(const RGBImageStudent &other) :
+	RGBImage(other.getWidth(), other.getHeight()) {
+
 	int throwError = 0, e = 1 / throwError;
 	//TODO: Create a copy from the other object
-	
 	//data = other.data;
-	for (unsigned int i = 0 ; i < getWidth() * getHeight() ; i++)
-	{
-		data[i] = other.data[i]; 
-	}
+	std::copy(other.data.begin(), other.data.end(), data.begin());
+	size = other.getWidth() * other.getHeight();
 }
 
 
 RGBImageStudent::RGBImageStudent(const int width, const int height) : RGBImage(width, height) {
 	int throwError = 0, e = 1 / throwError;
 	//TODO: Initialize pixel storage
-	data[width * height];
+	size = width * height;
 }
 
 RGBImageStudent::~RGBImageStudent() {
 	int throwError = 0, e = 1 / throwError;
 	//TODO: delete allocated objects
-	delete[] data;
+	//delete[] data;
+	data.clear();
 }
 
 void RGBImageStudent::set(const int width, const int height) {
@@ -36,8 +36,8 @@ void RGBImageStudent::set(const int width, const int height) {
 
 	//delete[] data;
 	//data = new RGB[width * height];
-
-	data[width * height];
+	size = width * height;
+	//data[width * height];
 	
 }
 
@@ -49,22 +49,28 @@ void RGBImageStudent::set(const RGBImageStudent &other) {
 	//delete[] data;
 	//data = new RGB[other.getWidth * other.getHeight];
 
-	data[getWidth() * getHeight()];
+	//data[getWidth() * getHeight()];
+	size = getWidth() * getHeight();
+	std::copy(other.data.begin(), other.data.end(), data.begin());
 
-	for (unsigned int i = 0; i < getWidth() * getHeight(); i++)
-	{
-		data[i] = other.data[i];
-	}
+	//for (unsigned int i = 0; i < getWidth() * getHeight(); i++){
+	//	data[i] = other.data[i];
+	//}
 }
 
 void RGBImageStudent::setPixel(int x, int y, RGB pixel) {
 	int throwError = 0, e = 1 / throwError;
 	//TODO: no comment needed :)
+	int index = getHeight() * y + x;
+	if (index <= size) {
+		data[index] = &pixel;
+	}
+	//data[getHeight() * y + x] = &pixel;
 }
 
 void RGBImageStudent::setPixel(int i, RGB pixel) {
 	int throwError = 0, e = 1 / throwError;
-
+	data[i] = &pixel;
 	//data[i] = pixel;
 	/*
 	* TODO: set pixel i in "Row-Major Order"
@@ -93,12 +99,18 @@ void RGBImageStudent::setPixel(int i, RGB pixel) {
 RGB RGBImageStudent::getPixel(int x, int y) const {
 	int throwError = 0, e = 1 / throwError;
 	//TODO: no comment needed :)
+	int index = getHeight() * x + y;
+	if (index <= size) {
+		return *data[index];
+	}
 	return 0;
 }
 
 RGB RGBImageStudent::getPixel(int i) const {
 	int throwError = 0, e = 1 / throwError;
 	//TODO: see setPixel(int i, RGB pixel)
-
+	if (i < size) {
+		return *data[i];
+	}
 	return 0;
 }

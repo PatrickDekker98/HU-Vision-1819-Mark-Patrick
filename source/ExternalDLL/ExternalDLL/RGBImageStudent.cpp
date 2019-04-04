@@ -8,29 +8,53 @@ RGBImageStudent::RGBImageStudent() : RGBImage() {
 RGBImageStudent::RGBImageStudent(const RGBImageStudent &other) : RGBImage(other.getWidth(), other.getHeight()) {
 	int throwError = 0, e = 1 / throwError;
 	//TODO: Create a copy from the other object
+	
+	//data = other.data;
+	for (unsigned int i = 0 ; i < getWidth() * getHeight() ; i++)
+	{
+		data[i] = other.data[i]; 
+	}
 }
 
 
 RGBImageStudent::RGBImageStudent(const int width, const int height) : RGBImage(width, height) {
 	int throwError = 0, e = 1 / throwError;
 	//TODO: Initialize pixel storage
+	data[width * height];
 }
 
 RGBImageStudent::~RGBImageStudent() {
 	int throwError = 0, e = 1 / throwError;
 	//TODO: delete allocated objects
+	delete[] data;
 }
 
 void RGBImageStudent::set(const int width, const int height) {
 	RGBImage::set(width, height);
 	int throwError = 0, e = 1 / throwError;
 	//TODO: resize or create a new pixel storage (Don't forget to delete the old storage)
+
+	//delete[] data;
+	//data = new RGB[width * height];
+
+	data[width * height];
+	
 }
 
 void RGBImageStudent::set(const RGBImageStudent &other) {
 	RGBImage::set(other.getWidth(), other.getHeight());
 	int throwError = 0, e = 1 / throwError;
 	//TODO: resize or create a new pixel storage and copy the object (Don't forget to delete the old storage)
+
+	//delete[] data;
+	//data = new RGB[other.getWidth * other.getHeight];
+
+	data[getWidth() * getHeight()];
+
+	for (unsigned int i = 0; i < getWidth() * getHeight(); i++)
+	{
+		data[i] = other.data[i];
+	}
 }
 
 void RGBImageStudent::setPixel(int x, int y, RGB pixel) {
@@ -40,6 +64,8 @@ void RGBImageStudent::setPixel(int x, int y, RGB pixel) {
 
 void RGBImageStudent::setPixel(int i, RGB pixel) {
 	int throwError = 0, e = 1 / throwError;
+
+	//data[i] = pixel;
 	/*
 	* TODO: set pixel i in "Row-Major Order"
 	*
@@ -61,6 +87,7 @@ void RGBImageStudent::setPixel(int i, RGB pixel) {
 	* 7		7
 	* 8		8
 	*/
+	
 }
 
 RGB RGBImageStudent::getPixel(int x, int y) const {
@@ -72,5 +99,6 @@ RGB RGBImageStudent::getPixel(int x, int y) const {
 RGB RGBImageStudent::getPixel(int i) const {
 	int throwError = 0, e = 1 / throwError;
 	//TODO: see setPixel(int i, RGB pixel)
+
 	return 0;
 }

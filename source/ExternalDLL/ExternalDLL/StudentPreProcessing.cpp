@@ -2,7 +2,11 @@
 
 
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
-	return nullptr;
+	IntensityImage * intens = ImageFactory::newIntensityImage(image.getWidth(), image.getHeight());
+	for (unsigned int i = 0; i < image.getHeight() * image.getWidth(); i++) {
+		intens->setPixel(i, Intensity(image.getPixel(i).b));
+	}
+	return intens;
 }
 
 IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &image) const {

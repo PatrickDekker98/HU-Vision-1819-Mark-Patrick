@@ -14,13 +14,14 @@ IntensityImageStudent::IntensityImageStudent(const int width, const int height) 
 }
 
 IntensityImageStudent::~IntensityImageStudent() {
-	//data.clear();
+	data.clear();
 }
 
 void IntensityImageStudent::set(const int width, const int height) {
 	IntensityImage::set(width, height);
 	size = width * height;
 	data.resize(size);
+
 }
 
 void IntensityImageStudent::set(const IntensityImageStudent &other) {
@@ -46,6 +47,7 @@ Intensity IntensityImageStudent::getPixel(int x, int y) const {
 	int index = getHeight() * x + y;
 	if (index <= size) {
 		return data[index];
+
 	}
 	return 0;
 }
@@ -53,6 +55,7 @@ Intensity IntensityImageStudent::getPixel(int x, int y) const {
 Intensity IntensityImageStudent::getPixel(int i) const {
 	if (i <= size) {
 		return data[i];
+
 	}
 	return 0;
 }

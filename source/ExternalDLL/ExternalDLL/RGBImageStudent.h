@@ -11,8 +11,9 @@
 
 class RGBImageStudent : public RGBImage {
 private:
-	std::vector<RGB*> data;
-	int size;
+	//std::vector<RGB*> data;
+	std::vector<RGB> data;
+	//int size;
 public:
 
 	RGBImageStudent();

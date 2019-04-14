@@ -12,7 +12,7 @@
 class IntensityImageStudent : public IntensityImage {
 private:
 	std::vector<Intensity> data;
-	int size;
+	//int size;
 public:
 
 	IntensityImageStudent();

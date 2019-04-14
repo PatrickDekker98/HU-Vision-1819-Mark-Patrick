@@ -3,14 +3,12 @@
 IntensityImageStudent::IntensityImageStudent() : IntensityImage() {}
 
 IntensityImageStudent::IntensityImageStudent(const IntensityImageStudent &other) : IntensityImage(other.getWidth(), other.getHeight()) {
-	size = getWidth() * getHeight();
-	data.resize(size);
+	data.resize(other.data.size());
 	std::copy(other.data.begin(), other.data.end(), data.begin());
 }
 
 IntensityImageStudent::IntensityImageStudent(const int width, const int height) : IntensityImage(width, height) {
-	size = height * width;
-	data.resize(size);
+	data.resize(height * width);
 }
 
 IntensityImageStudent::~IntensityImageStudent() {
@@ -19,8 +17,7 @@ IntensityImageStudent::~IntensityImageStudent() {
 
 void IntensityImageStudent::set(const int width, const int height) {
 	IntensityImage::set(width, height);
-	size = width * height;
-	data.resize(size);
+	data.resize(width * height);
 
 }
 
@@ -31,21 +28,21 @@ void IntensityImageStudent::set(const IntensityImageStudent &other) {
 }
 
 void IntensityImageStudent::setPixel(int x, int y, Intensity pixel) {
-	int index = getHeight()*x + y;
-	if (index <= size) {
+	unsigned int index = getHeight()*x + y;
+	if (index <= data.size()) {
 		data[index] = pixel;
 	}
 }
 
 void IntensityImageStudent::setPixel(int i, Intensity pixel) {
-	if (i <= size) {
+	if (i <= data.size()) {
 		data[i] = pixel;
 	}
 }
 
 Intensity IntensityImageStudent::getPixel(int x, int y) const {
-	int index = getHeight() * x + y;
-	if (index <= size) {
+	unsigned int index = getHeight() * x + y;
+	if (index <= data.size()) {
 		return data[index];
 
 	}
@@ -53,7 +50,7 @@ Intensity IntensityImageStudent::getPixel(int x, int y) const {
 }
 
 Intensity IntensityImageStudent::getPixel(int i) const {
-	if (i <= size) {
+	if (i <= data.size()) {
 		return data[i];
 
 	}

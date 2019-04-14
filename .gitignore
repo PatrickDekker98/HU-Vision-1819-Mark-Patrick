@@ -1,4 +1,6 @@
 source/ExternalDLL/ExternalDLL/ExternalDLL2017.vcxproj
 source/ExternalDLL/ExternalDLL/ExternalDLL.vcxproj
 source/ExternalDLL/.vs/
+source/ExternalDLL/ExternalDLL/Debugpictures
+source/ExternalDLL/ExternalDLL/Debugpictures/
 source/FaceRecognitionGUI/.vs/

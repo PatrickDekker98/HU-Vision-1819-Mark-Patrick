@@ -1,5 +1,7 @@
 #include "StudentPreProcessing.h"
 #include "ImageFactory.h"
+//#include <algorithm>
+//#include <cstdlib>
 
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
 
@@ -7,16 +9,27 @@ IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &imag
 
 	auto total_pixels = image.getHeight() * image.getWidth();
 
-	for (int i = 0; i < total_pixels; i++ ){
+	for (int i = 0; i < total_pixels; i++)
+	{
 		auto pixel = image.getPixel(i);
-		Intensity p = ((0.3*pixel.r + 0.59*pixel.g + 0.11*pixel.b));
-		//Intensity p = ((0.3*pixel.r + 0.59*pixel.g + 0.11*pixel.b));
-		//	Intensity p = ((pixel.r + pixel.g + pixel.b) / 3);
 
-		gray_image->setPixel(i, p);
-		
+		//Averaging
+		Intensity Averaging = ((pixel.r + pixel.g + pixel.b) / 3);
+
+		// Luma
+		Intensity luma = (pixel.r * 0.3 + pixel.g * 0.59 + pixel.b * 0.11);
+	
+		// Single color channel (blue)
+		Intensity blue = (pixel.b);
+
+		// Single color channel (green)
+		Intensity green = (pixel.g);
+
+		// Single color channel (red)
+		Intensity red = (pixel.r);
+
+		gray_image->setPixel(i, red);
 	}
-
 	return gray_image;
 }
 
